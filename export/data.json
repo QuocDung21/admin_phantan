@@ -1,0 +1,179 @@
+[{
+  "_id": {
+    "$oid": "643a506e4b89cf07025a252a"
+  },
+  "firstname": "Nguyễn Quốc",
+  "lastname": "Dũng",
+  "email": "rongvang2357hn@gmail.com",
+  "role": "admin",
+  "isBlocked": false,
+  "cart": [],
+  "wishlist": [],
+  "createdAt": {
+    "$date": "2023-04-15T07:21:18.099Z"
+  },
+  "updatedAt": {
+    "$date": "2023-05-25T14:46:04.890Z"
+  },
+  "__v": 0,
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2E1MDZlNGI4OWNmMDcwMjVhMjUyYSIsImlhdCI6MTY4NTAyNTk2NCwiZXhwIjoxNjg1Mjg1MTY0fQ.-25BmhZ7CTdZ2bFlb7Dhr3f_IROHCSGDB_X2FiPhJpY",
+  "password": "$2b$10$e2QymZGKAgRzth0ZdxkdWuMxP32H1LodkqNCQUJeTuDag3zaBmftS",
+  "mobile": "918866335"
+},
+{
+  "_id": {
+    "$oid": "643a507d4b89cf07025a252e"
+  },
+  "firstname": "Dũng 123",
+  "lastname": "Nguyễn Quốc",
+  "email": "19004036@st.vlute.edu.vn",
+  "role": "user",
+  "isBlocked": false,
+  "cart": [],
+  "wishlist": [],
+  "createdAt": {
+    "$date": "2023-04-15T07:21:33.222Z"
+  },
+  "updatedAt": {
+    "$date": "2023-05-31T09:30:27.359Z"
+  },
+  "__v": 0,
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2E1MDdkNGI4OWNmMDcwMjVhMjUyZSIsImlhdCI6MTY4NDY2MTA1MCwiZXhwIjoxNjg0OTIwMjUwfQ.vfEvj8lfpIHfuFjIApP5EGh90wQd4Qe8zdlvWocrbwM",
+  "mobile": "918866335",
+  "password": "$2b$10$5urzqyl1AfDWTuhfvVNaJeC64UK01.j1YHZYeGkYZuHjDpPUSJ5YG"
+},
+{
+  "_id": {
+    "$oid": "643a52734b89cf07025a2537"
+  },
+  "firstname": "123",
+  "lastname": "123",
+  "email": "19015077@st.vlute.edu.vn",
+  "password": "$2b$10$AS29nTa3YdheLt5hAcGhEu9.LLWJdkiOEXhRSVFZZtTp9cSTXQMri",
+  "role": "admin",
+  "isBlocked": false,
+  "cart": [],
+  "wishlist": [],
+  "createdAt": {
+    "$date": "2023-04-15T07:29:55.678Z"
+  },
+  "updatedAt": {
+    "$date": "2023-05-19T16:46:45.636Z"
+  },
+  "__v": 0,
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0M2E1MjczNGI4OWNmMDcwMjVhMjUzNyIsImlhdCI6MTY4MTU0NjgzMiwiZXhwIjoxNjgxODA2MDMyfQ.v1Xgy4NNcjpoNwvoK19DNOoYIQ1PsGnQZcFvdJieUBk",
+  "mobile": "123"
+},
+{
+  "_id": {
+    "$oid": "6463296d40a085e76b93e7e0"
+  },
+  "firstname": "dung123",
+  "lastname": "quoc123",
+  "email": "rongvang23578hn@gmail.com",
+  "password": "$2b$10$lWvvKrGfy2OvTCug2mIhyOLIDuaCcfFjJozFVozINJeZnCWb6fNwO",
+  "role": "personnel",
+  "isBlocked": false,
+  "cart": [],
+  "wishlist": [],
+  "createdAt": {
+    "$date": "2023-05-16T06:57:49.864Z"
+  },
+  "updatedAt": {
+    "$date": "2023-05-25T05:22:58.154Z"
+  },
+  "__v": 0,
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NjMyOTZkNDBhMDg1ZTc2YjkzZTdlMCIsImlhdCI6MTY4NDk5MjE3OCwiZXhwIjoxNjg1MjUxMzc4fQ.7zR-o2cn2TVDRAVw6oxqjVz9dyeuW1HZDnQTvy7E69M",
+  "mobile": "123"
+},
+{
+  "_id": {
+    "$oid": "6465dbcb258306f41d0df6fa"
+  },
+  "firstname": "dung32",
+  "lastname": "quocdung32",
+  "email": "admin123@gmail.com",
+  "mobile": "09188123123",
+  "password": "$2b$10$X4ikOaA0F7KJ5vaCU1RZXOlziPEHtwJO/1i56kCL6BOSA4WQ8sBJa",
+  "role": "admin",
+  "isBlocked": true,
+  "cart": [],
+  "wishlist": [],
+  "createdAt": {
+    "$date": "2023-05-18T08:03:23.649Z"
+  },
+  "updatedAt": {
+    "$date": "2023-05-18T11:41:05.753Z"
+  },
+  "__v": 0,
+  "passwordResetExpires": {
+    "$date": "2023-05-18T12:11:05.753Z"
+  },
+  "passwordResetToken": "567b71fca1a17bb1193174ef687235598d4f7b2520459bde4492975408b15c81"
+},
+{
+  "_id": {
+    "$oid": "6465dc1d258306f41d0df6ff"
+  },
+  "firstname": "dung32",
+  "lastname": "quocdung32",
+  "email": "admin1234@gmail.com",
+  "mobile": "09188123123",
+  "password": "$2b$10$W96nUi7EaEVV9UXxUM8R.eIzeZkceKmpr1Y/NyfIQ0kpMUXaQ9T0a",
+  "role": "admin",
+  "isBlocked": true,
+  "cart": [],
+  "wishlist": [],
+  "createdAt": {
+    "$date": "2023-05-18T08:04:45.134Z"
+  },
+  "updatedAt": {
+    "$date": "2023-05-31T09:43:46.864Z"
+  },
+  "__v": 0,
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NjVkYzFkMjU4MzA2ZjQxZDBkZjZmZiIsImlhdCI6MTY4NTUyNjIyNiwiZXhwIjoxNjg1Nzg1NDI2fQ.-XYMRyPxysquf08bJNAILK_lH__JkPafImDKvFcjV-Y"
+},
+{
+  "_id": {
+    "$oid": "64664c865472179ce67a97a1"
+  },
+  "firstname": "123",
+  "lastname": "123",
+  "email": "cranckers@joeneo.com",
+  "mobile": "123123123",
+  "password": "$2b$10$OH7AlIGHalk3O3zPP40ywezreNtIpZ5IToi0ZjcVBkvraqbyNXcgq",
+  "role": "admin",
+  "isBlocked": false,
+  "cart": [],
+  "wishlist": [],
+  "createdAt": {
+    "$date": "2023-05-18T16:04:22.485Z"
+  },
+  "updatedAt": {
+    "$date": "2023-05-19T16:46:40.436Z"
+  },
+  "__v": 0,
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NjY0Yzg2NTQ3MjE3OWNlNjdhOTdhMSIsImlhdCI6MTY4NDQyNjk1MSwiZXhwIjoxNjg0Njg2MTUxfQ.sI7Bly3T2c7S4rDHFNYdz3yhZYhzsC1jqywxLIGhvPY"
+},
+{
+  "_id": {
+    "$oid": "646f1a9da40cfdb1ed90f64e"
+  },
+  "firstname": "dung32",
+  "lastname": "quocdung32",
+  "email": "admin12345@gmail.com",
+  "mobile": "09188123123",
+  "password": "$2b$10$nBJxsmCVW.kkz.T7TrPEoOYkKjyYKZ18zt0IbXXOvmJ0eZdHweR4G",
+  "role": "user",
+  "isBlocked": true,
+  "cart": [],
+  "wishlist": [],
+  "createdAt": {
+    "$date": "2023-05-25T08:21:49.896Z"
+  },
+  "updatedAt": {
+    "$date": "2023-05-25T13:18:19.398Z"
+  },
+  "__v": 0,
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NmYxYTlkYTQwY2ZkYjFlZDkwZjY0ZSIsImlhdCI6MTY4NTAyMDY5OSwiZXhwIjoxNjg1Mjc5ODk5fQ.MlkbnTR_4iibAwBtkEVKipbWeY1Kg0iIA_v_1lGxvO8"
+}]
