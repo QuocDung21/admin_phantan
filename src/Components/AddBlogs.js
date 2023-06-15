@@ -1,102 +1,100 @@
 import React, { useEffect, useState } from "react";
-import { storage, db } from "../../Config/Config";
-import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
-import { Navbar } from "../Navbar";
-import { deleteUser } from "../../import/apiFirebase";
-import { AddUsersPhantan } from "../../import/apiPhantan";
-export const AddUsers = () => {
-  const [productName, setProductName] = useState("");
-  const [productPrice, setProductPrice] = useState(0);
-  const [productImg, setProductImg] = useState(null);
-  const [error, setError] = useState("");
-  const [users, setUsers] = useState([""]);
-  const types = ["image/png", "image/jpeg"]; // image types
+import { Navbar } from "./Navbar";
+import { dbName } from "../import/dbName";
+import { db } from "../Config/Config";
+import { toast } from "react-toastify";
 
-  const productImgHandler = (e) => {
-    let selectedFile = e.target.files[0];
-    if (selectedFile && types.includes(selectedFile.type)) {
-      setProductImg(selectedFile);
-      setError("");
-    } else {
-      setProductImg(null);
-      setError("Please select a valid image type (jpg or png)");
-    }
-  };
-
-  const getAllUsers = () => {
-    db.collection("Users")
+export const AddBlogs = () => {
+  const [blogs, setBlogs] = useState([]);
+  const getBlogs = () => {
+    db.collection(dbName.blogs)
       .get()
       .then((querySnapshot) => {
-        const users_list = [];
+        const blogsdt = [];
         querySnapshot.forEach((doc) => {
-          users_list.push({
+          blogsdt.push({
             id: doc.id,
             ...doc.data(),
           });
         });
-        console.log(users_list);
-        return setUsers(users_list);
+        toast("Blogs:", blogsdt);
+        console.log(blogsdt);
+        return setBlogs(blogsdt);
       })
       .catch((error) => {
-        console.error("Error getting Users: ", error);
-      });
-  };
-
-  const addProduct = (e) => {
-    e.preventDefault();
-    const uploadTask = storage
-      .ref(`product-images/${productImg.name}`)
-      .put(productImg);
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        const progress =
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log(progress);
-      },
-      (err) => setError(err.message),
-      () => {
-        storage
-          .ref("product-images")
-          .child(productImg.name)
-          .getDownloadURL()
-          .then((url) => {
-            db.collection("Products")
-              .add({
-                ProductName: productName,
-                ProductPrice: Number(productPrice),
-                ProductImg: url,
-              })
-              .then(() => {
-                setProductName("");
-                setProductPrice(0);
-                setProductImg("");
-                setError("");
-                document.getElementById("file").value = "";
-              })
-              .catch((err) => setError(err.message));
-          });
-      }
-    );
-  };
-
-  const deleteProduct = (productId) => {
-    db.collection("Products")
-      .doc(productId)
-      .delete()
-      .catch((error) => {
-        console.error("Error deleting product: ", error);
+        toast("Error getting blogs: ", error);
       });
   };
   useEffect(() => {
-    getAllUsers();
+    getBlogs();
   }, []);
   return (
     <>
       <Navbar />
       <hr />
       <div className="flex flex-row justify-around min-w-max">
-        <div className=""></div>
+        <div className="">
+          <div className="flex text-center items-center justify-center">
+            <h2>ADD BLOGS</h2>{" "}
+            {/* <button
+              className="btn btn-primary m-5"
+              onClick={(e) => {
+                e.preventDefault();
+                AddUsersPhantan();
+                getAllUsers();
+              }}
+            >
+              Phân tán users
+            </button> */}
+          </div>
+          <hr />
+          {/* <form autoComplete="off" className="form-group" onSubmit={addProduct}>
+            <label htmlFor="product-name">Firstname</label>
+            <input
+              type="text"
+              className="form-control"
+              required
+              onChange={(e) => setProductName(e.target.value)}
+              value={productName}
+            />
+            <br />
+            <label htmlFor="product-price">Product Description</label>
+            <input
+              type="number"
+              className="form-control"
+              required
+              onChange={(e) => setProductPrice(e.target.value)}
+              value={productPrice}
+            />
+            <br />
+            <label htmlFor="product-price">Product Price</label>
+            <input
+              type="number"
+              className="form-control"
+              required
+              onChange={(e) => setProductPrice(e.target.value)}
+              value={productPrice}
+            />
+            <br />
+            <label htmlFor="product-img">Product Image</label>
+            <input
+              type="file"
+              className="form-control"
+              id="file"
+              required
+              onChange={productImgHandler}
+            />
+            <br />
+
+            <button type="submit" className="btn btn-success mr-2">
+              ADD
+            </button>
+            <NavLink className="btn btn-danger" to="/">
+              Back
+            </NavLink>
+          </form>
+          {error && <span className="error-msg">{error}</span>} */}
+        </div>
         <hr />
         <div className="flex flex-col ">
           <div className="overflow-x-auto">
@@ -105,7 +103,8 @@ export const AddUsers = () => {
                 <button
                   className="btn btn-primary w-full"
                   onClick={(e) => {
-                    getAllUsers();
+                    e.preventDefault();
+                    getBlogs();
                   }}
                 >
                   Reset
@@ -123,25 +122,19 @@ export const AddUsers = () => {
                         scope="col"
                         className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
                       >
-                        FirstName
+                        Author
                       </th>{" "}
                       <th
                         scope="col"
                         className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
                       >
-                        LastName
+                        Description
                       </th>
                       <th
                         scope="col"
                         className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
                       >
-                        Email
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
-                      >
-                        Mobile
+                        Title
                       </th>
                       <th
                         scope="col"
@@ -157,7 +150,7 @@ export const AddUsers = () => {
                       </th>
                     </tr>
                   </thead>
-                  {users.map((dt) => (
+                  {blogs.map((dt) => (
                     <>
                       <tbody className="divide-y divide-gray-200">
                         <tr>
@@ -165,16 +158,13 @@ export const AddUsers = () => {
                             {dt?.id}
                           </td>
                           <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                            {dt?.firstname}
+                            {dt?.author}
+                          </td>
+                          <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap three-line-paragraph">
+                            {dt?.description}
                           </td>
                           <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                            {dt?.lastname}
-                          </td>
-                          <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                            {dt?.email}
-                          </td>
-                          <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                            {dt?.mobile}
+                            {dt?.title}
                           </td>
                           <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
                             <button className="text-green-500 hover:text-green-700">
@@ -185,9 +175,6 @@ export const AddUsers = () => {
                             <button
                               onClick={(e) => {
                                 e.preventDefault();
-                                return alert(JSON.stringify(dt.id));
-                                deleteUser(dt.id);
-                                getAllUsers();
                               }}
                               className="text-red-500 hover:text-red-700"
                             >

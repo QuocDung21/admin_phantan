@@ -1,102 +1,39 @@
 import React, { useEffect, useState } from "react";
-import { storage, db } from "../../Config/Config";
-import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
-import { Navbar } from "../Navbar";
-import { deleteUser } from "../../import/apiFirebase";
-import { AddUsersPhantan } from "../../import/apiPhantan";
-export const AddUsers = () => {
-  const [productName, setProductName] = useState("");
-  const [productPrice, setProductPrice] = useState(0);
-  const [productImg, setProductImg] = useState(null);
-  const [error, setError] = useState("");
-  const [users, setUsers] = useState([""]);
-  const types = ["image/png", "image/jpeg"]; // image types
+import { Navbar } from "./Navbar";
+import { dbName } from "../import/dbName";
+import { toast } from "react-toastify";
+import { db } from "../Config/Config";
 
-  const productImgHandler = (e) => {
-    let selectedFile = e.target.files[0];
-    if (selectedFile && types.includes(selectedFile.type)) {
-      setProductImg(selectedFile);
-      setError("");
-    } else {
-      setProductImg(null);
-      setError("Please select a valid image type (jpg or png)");
-    }
-  };
-
-  const getAllUsers = () => {
-    db.collection("Users")
+const AddRiews = () => {
+  const [rivews, setRiviews] = useState([""]);
+  const getRivews = () => {
+    db.collection(dbName.reviews)
       .get()
       .then((querySnapshot) => {
-        const users_list = [];
+        const rivew = [];
         querySnapshot.forEach((doc) => {
-          users_list.push({
+          rivew.push({
             id: doc.id,
             ...doc.data(),
           });
         });
-        console.log(users_list);
-        return setUsers(users_list);
+        toast("Rivews:", rivew);
+        console.log(rivew);
+        return setRiviews(rivew);
       })
       .catch((error) => {
-        console.error("Error getting Users: ", error);
+        toast("Error getting blogs: ", error);
       });
   };
 
-  const addProduct = (e) => {
-    e.preventDefault();
-    const uploadTask = storage
-      .ref(`product-images/${productImg.name}`)
-      .put(productImg);
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        const progress =
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log(progress);
-      },
-      (err) => setError(err.message),
-      () => {
-        storage
-          .ref("product-images")
-          .child(productImg.name)
-          .getDownloadURL()
-          .then((url) => {
-            db.collection("Products")
-              .add({
-                ProductName: productName,
-                ProductPrice: Number(productPrice),
-                ProductImg: url,
-              })
-              .then(() => {
-                setProductName("");
-                setProductPrice(0);
-                setProductImg("");
-                setError("");
-                document.getElementById("file").value = "";
-              })
-              .catch((err) => setError(err.message));
-          });
-      }
-    );
-  };
-
-  const deleteProduct = (productId) => {
-    db.collection("Products")
-      .doc(productId)
-      .delete()
-      .catch((error) => {
-        console.error("Error deleting product: ", error);
-      });
-  };
   useEffect(() => {
-    getAllUsers();
-  }, []);
+    getRivews()
+  },[]);
   return (
     <>
       <Navbar />
       <hr />
-      <div className="flex flex-row justify-around min-w-max">
-        <div className=""></div>
+      <div className="flex  justify-center min-w-max">
         <hr />
         <div className="flex flex-col ">
           <div className="overflow-x-auto">
@@ -105,7 +42,8 @@ export const AddUsers = () => {
                 <button
                   className="btn btn-primary w-full"
                   onClick={(e) => {
-                    getAllUsers();
+                    e.preventDefault();
+                    getRivews();
                   }}
                 >
                   Reset
@@ -123,26 +61,26 @@ export const AddUsers = () => {
                         scope="col"
                         className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
                       >
-                        FirstName
+                        Title
                       </th>{" "}
                       <th
                         scope="col"
                         className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
                       >
-                        LastName
-                      </th>
+                        Rating
+                      </th>{" "}
                       <th
                         scope="col"
                         className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
                       >
-                        Email
-                      </th>
+                        Status
+                      </th>{" "}
                       <th
                         scope="col"
                         className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
                       >
-                        Mobile
-                      </th>
+                        User
+                      </th>{" "}
                       <th
                         scope="col"
                         className="px-6 py-3 text-xs font-bold text-right text-gray-500 uppercase "
@@ -157,7 +95,7 @@ export const AddUsers = () => {
                       </th>
                     </tr>
                   </thead>
-                  {users.map((dt) => (
+                  {rivews.map((dt) => (
                     <>
                       <tbody className="divide-y divide-gray-200">
                         <tr>
@@ -165,16 +103,16 @@ export const AddUsers = () => {
                             {dt?.id}
                           </td>
                           <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                            {dt?.firstname}
+                            {dt?.title}
                           </td>
                           <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                            {dt?.lastname}
+                            {dt?.rating}
                           </td>
                           <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                            {dt?.email}
-                          </td>
+                            {dt?.status}
+                          </td>{" "}
                           <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                            {dt?.mobile}
+                            {dt?.user}
                           </td>
                           <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
                             <button className="text-green-500 hover:text-green-700">
@@ -185,9 +123,8 @@ export const AddUsers = () => {
                             <button
                               onClick={(e) => {
                                 e.preventDefault();
-                                return alert(JSON.stringify(dt.id));
-                                deleteUser(dt.id);
-                                getAllUsers();
+                                //   deleteUser(dt.id);
+                                //   getAllUsers();
                               }}
                               className="text-red-500 hover:text-red-700"
                             >
@@ -207,3 +144,5 @@ export const AddUsers = () => {
     </>
   );
 };
+
+export default AddRiews;

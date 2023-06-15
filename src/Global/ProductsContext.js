@@ -1,7 +1,7 @@
 import React, { createContext } from "react";
 import { db } from "../Config/Config";
 
-export const  ProductsContext = createContext();
+export const ProductsContext = createContext();
 
 export class ProductsContextProvider extends React.Component {
   state = {
@@ -15,10 +15,13 @@ export class ProductsContextProvider extends React.Component {
       changes.forEach((change) => {
         if (change.type === "added") {
           prevProducts.push({
-            ProductID: change.doc.id,
-            ProductName: change.doc.data().ProductName,
+            ProductID: change.doc.data().id,
+            ProductName: change.doc.data().title,
             ProductPrice: change.doc.data().ProductPrice,
-            ProductImg: change.doc.data().ProductImg,
+            ProductImg:
+              change.doc.data().images.length > 0
+                ? change.doc.data().images[0].url
+                : "",
           });
         }
         this.setState({

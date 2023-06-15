@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { storage, db } from "../Config/Config";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
-import { getBrands } from "../import/apiFirebase";
+import { getAllProducts, getBrands } from "../import/apiFirebase";
 import { useEffect } from "react";
+import { AddProductsPhantan } from "../import/apiPhantan";
 export const AddProducts = () => {
   const [productName, setProductName] = useState("");
   const [productPrice, setProductPrice] = useState(0);
   const [productImg, setProductImg] = useState(null);
   const [error, setError] = useState("");
-  const types = ["image/png", "image/jpeg"]; // image types
-  
+  const types = ["image/png", "image/jpeg"];
   const productImgHandler = (e) => {
     let selectedFile = e.target.files[0];
     if (selectedFile && types.includes(selectedFile.type)) {
@@ -61,7 +61,6 @@ export const AddProducts = () => {
   };
 
   const deleteProduct = (productId) => {
-    // Xóa sản phẩm từ Firestore dựa trên ProductID
     db.collection("Products")
       .doc(productId)
       .delete()
@@ -69,12 +68,13 @@ export const AddProducts = () => {
         console.error("Error deleting product: ", error);
       });
   };
-
+  
   return (
     <div className="container">
       <br />
       <div className="flex text-center items-center justify-center">
         <h2>ADD PRODUCTS</h2>{" "}
+       
       </div>
       <hr />
       <form autoComplete="off" className="form-group" onSubmit={addProduct}>

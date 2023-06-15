@@ -15,6 +15,13 @@ import Layouts from "./Components/layout/layout";
 import { AddUsers } from "./Components/users/AddUsers";
 import { Navbar } from "./Components/Navbar";
 import { AddBrand } from "./Components/brand/AddBrand";
+import AddCategorys from "./Components/AddCategorys";
+import { AddBlogs } from "./Components/AddBlogs";
+import AddRiews from "./Components/AddRiews";
+import AddContacts from "./Components/AddContacts";
+import AddOrders from "./Components/AddOrders";
+import AddCateblogs from "./Components/AddCateblogs";
+import lucdo from "./Components/lucdo";
 
 export class App extends Component {
   state = {
@@ -28,7 +35,7 @@ export class App extends Component {
           .get()
           .then((snapshot) => {
             this.setState({
-              user: snapshot.data().Name,
+              user: snapshot?.data()?.Name,
             });
           });
       } else {
@@ -64,6 +71,14 @@ export class App extends Component {
               {/* cashout */}
               <Route path="/addusers" component={AddUsers} />
               <Route path="/addbrands" component={AddBrand} />
+              <Route path="/addcategories" component={AddCategorys} />
+              <Route path="/addblogs" component={AddBlogs} />
+              <Route path="/addreviews" component={AddRiews} />
+              {/* <Route path="/addcontacts" component={AddRiews} /> */}
+              <Route path="/addcontacts" component={AddContacts} /> //Orders
+              <Route path="/addorders" component={AddOrders} />
+              <Route path="/addcateblog" component={AddCateblogs} />
+              <Route path="/luocdo" component={lucdo} />
               <Route
                 path="/cashout"
                 component={() => <Cashout user={this.state.user} />}

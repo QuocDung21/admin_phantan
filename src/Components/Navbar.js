@@ -7,6 +7,7 @@ import { cart } from "react-icons-kit/entypo/cart";
 import { useHistory } from "react-router-dom";
 import { CartContext } from "../Global/CartContext";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import { AddProductsPhantan, AddUsersPhantan } from "../import/apiPhantan";
 
 export const Navbar = ({ user }) => {
   const history = useHistory();
@@ -19,30 +20,61 @@ export const Navbar = ({ user }) => {
 
   return (
     <div className="navbox flex justify-around">
-      <div className="leftside ">
+      {/* <div className="leftside ">
         <img src={logo} alt="" />
-      </div>
+      </div> */}
       <div className="leftside cursor-pointer ">
         <NavLink className="text-decoration-none" to="/addusers">
           <span className="ml-3 cursor-pointer text-xl font-weight-bold">
-            User
-          </span>
-        </NavLink>
-        <NavLink className="text-decoration-none" to="/addproducts">
-          <span className="ml-3 cursor-pointer text-xl font-weight-bold">
-            Products
+            Users
           </span>
         </NavLink>
         <NavLink className="text-decoration-none" to="/">
           <span className="ml-3 cursor-pointer text-xl font-weight-bold">
-            Category
+            Products
+          </span>
+        </NavLink>
+        <NavLink className="text-decoration-none" to="/addcategories">
+          <span className="ml-3 cursor-pointer text-xl font-weight-bold">
+            Categorys
           </span>
         </NavLink>
         <NavLink className="text-decoration-none" to="/addbrands">
           <span className="ml-3 cursor-pointer text-xl font-weight-bold">
-            Brand
+            Brands
           </span>
         </NavLink>
+        <NavLink className="text-decoration-none" to="/addblogs">
+          <span className="ml-3 cursor-pointer text-xl font-weight-bold">
+            Blogs
+          </span>
+        </NavLink>
+        <NavLink className="text-decoration-none" to="/addreviews">
+          <span className="ml-3 cursor-pointer text-xl font-weight-bold">
+            Reviews
+          </span>
+        </NavLink>{" "}
+        <NavLink className="text-decoration-none" to="/addcontacts">
+          <span className="ml-3 cursor-pointer text-xl font-weight-bold">
+            Contacts
+          </span>
+        </NavLink>{" "}
+        <NavLink className="text-decoration-none" to="/addorders">
+          <span className="ml-3 cursor-pointer text-xl font-weight-bold">
+            Orders
+          </span>
+        </NavLink>{" "}
+        <NavLink className="text-decoration-none" to="/addcateblog">
+          <span className="ml-3 cursor-pointer text-xl font-weight-bold">
+            Cate Blog
+          </span>
+        </NavLink>{" "}
+        <NavLink className="text-decoration-none" to="/luocdo">
+          <span className="ml-3 cursor-pointer text-xl font-weight-bold">
+            Phân tán
+          </span>
+        </NavLink>{" "}
+        {/* addcateblog */}
       </div>
       {!user && (
         <div className="rightside">

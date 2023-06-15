@@ -3,6 +3,7 @@ import { Navbar } from "./Navbar";
 import { Products } from "./Products";
 import { useHistory } from "react-router-dom";
 import { auth } from "../Config/Config";
+// import Sidebar  from "./import/Sidebar";
 
 export const Home = ({ user }) => {
   const history = useHistory();
